@@ -1,0 +1,39 @@
+﻿<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>net5.0</TargetFramework>
+    <UserSecretsId>aspnet-SelectAndRepair-BBB373B5-EF3F-4DBB-B8AA-7152CEC275BF</UserSecretsId>
+    <LangVersion>latest</LangVersion>
+  </PropertyGroup>
+
+  <PropertyGroup>
+    <CodeAnalysisRuleSet>..\..\Rules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <ItemGroup>
+    <AdditionalFiles Include="..\..\stylecop.json" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="5.0.1" />
+    <PackageReference Include="Microsoft.AspNetCore.Mvc.Razor.RuntimeCompilation" Version="5.0.1" />
+    <PackageReference Include="BuildBundlerMinifier" Version="3.2.449" />
+    <PackageReference Include="Microsoft.Web.LibraryManager.Build" Version="2.1.113" />
+    <PackageReference Include="Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore" Version="5.0.1" />
+    <PackageReference Include="Microsoft.AspNetCore.Identity.UI" Version="5.0.1" />
+    <PackageReference Include="StyleCop.Analyzers" Version="1.2.0-beta.312" PrivateAssets="all">
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers</IncludeAssets>
+    </PackageReference>
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\SelectAndRepair.Common\SelectAndRepair.Common.csproj" />
+    <ProjectReference Include="..\..\Data\SelectAndRepair.Data.Models\SelectAndRepair.Data.Models.csproj" />
+    <ProjectReference Include="..\..\Data\SelectAndRepair.Data\SelectAndRepair.Data.csproj" />
+    <ProjectReference Include="..\..\Services\SelectAndRepair.Services.Data\SelectAndRepair.Services.Data.csproj" />
+    <ProjectReference Include="..\..\Services\SelectAndRepair.Services.Mapping\SelectAndRepair.Services.Mapping.csproj" />
+    <ProjectReference Include="..\..\Services\SelectAndRepair.Services.Messaging\SelectAndRepair.Services.Messaging.csproj" />
+    <ProjectReference Include="..\..\Services\SelectAndRepair.Services\SelectAndRepair.Services.csproj" />
+    <ProjectReference Include="..\SelectAndRepair.Web.Infrastructure\SelectAndRepair.Web.Infrastructure.csproj" />
+    <ProjectReference Include="..\SelectAndRepair.Web.ViewModels\SelectAndRepair.Web.ViewModels.csproj" />
+  </ItemGroup>
+</Project>
