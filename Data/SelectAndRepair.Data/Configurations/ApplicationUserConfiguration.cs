@@ -1,8 +1,8 @@
 ﻿namespace SelectAndRepair.Data.Configurations
 {
-    using SelectAndRepair.Data.Models;
     using Microsoft.EntityFrameworkCore;
     using Microsoft.EntityFrameworkCore.Metadata.Builders;
+    using SelectAndRepair.Data.Models;
 
     public class ApplicationUserConfiguration : IEntityTypeConfiguration<ApplicationUser>
     {

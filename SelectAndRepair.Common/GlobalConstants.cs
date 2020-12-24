@@ -2,8 +2,8 @@
 {
     public static class GlobalConstants
     {
-        public const string SystemName = "SelectAndRepair";
-
         public const string AdministratorRoleName = "Administrator";
+
+        public const string SystemName = "SelectAndRepair";
     }
 }

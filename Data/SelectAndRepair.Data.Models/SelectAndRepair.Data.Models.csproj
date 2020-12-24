@@ -20,6 +20,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\..\SelectAndRepair.Common\SelectAndRepair.Common.csproj" />
     <ProjectReference Include="..\SelectAndRepair.Data.Common\SelectAndRepair.Data.Common.csproj" />
   </ItemGroup>
   

@@ -2,17 +2,6 @@
 {
     using System.Reflection;
 
-    using SelectAndRepair.Data;
-    using SelectAndRepair.Data.Common;
-    using SelectAndRepair.Data.Common.Repositories;
-    using SelectAndRepair.Data.Models;
-    using SelectAndRepair.Data.Repositories;
-    using SelectAndRepair.Data.Seeding;
-    using SelectAndRepair.Services.Data;
-    using SelectAndRepair.Services.Mapping;
-    using SelectAndRepair.Services.Messaging;
-    using SelectAndRepair.Web.ViewModels;
-
     using Microsoft.AspNetCore.Builder;
     using Microsoft.AspNetCore.Hosting;
     using Microsoft.AspNetCore.Http;
@@ -21,6 +10,15 @@
     using Microsoft.Extensions.Configuration;
     using Microsoft.Extensions.DependencyInjection;
     using Microsoft.Extensions.Hosting;
+    using SelectAndRepair.Data;
+    using SelectAndRepair.Data.Common;
+    using SelectAndRepair.Data.Common.Repositories;
+    using SelectAndRepair.Data.Models;
+    using SelectAndRepair.Data.Repositories;
+    using SelectAndRepair.Data.Seeding;
+    using SelectAndRepair.Services.Mapping;
+    using SelectAndRepair.Services.Messaging;
+    using SelectAndRepair.Web.ViewModels;
 
     public class Startup
     {
@@ -64,7 +62,6 @@
 
             // Application services
             services.AddTransient<IEmailSender, NullMessageSender>();
-            services.AddTransient<ISettingsService, SettingsService>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

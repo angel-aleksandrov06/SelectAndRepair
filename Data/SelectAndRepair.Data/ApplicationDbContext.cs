@@ -6,11 +6,10 @@
     using System.Threading;
     using System.Threading.Tasks;
 
-    using SelectAndRepair.Data.Common.Models;
-    using SelectAndRepair.Data.Models;
-
     using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
     using Microsoft.EntityFrameworkCore;
+    using SelectAndRepair.Data.Common.Models;
+    using SelectAndRepair.Data.Models;
 
     public class ApplicationDbContext : IdentityDbContext<ApplicationUser, ApplicationRole, string>
     {
@@ -24,7 +23,21 @@
         {
         }
 
-        public DbSet<Setting> Settings { get; set; }
+        public DbSet<Appointment> Appointments { get; set; }
+
+        public DbSet<BlogPost> BlogPosts { get; set; }
+
+        public DbSet<Category> Categories { get; set; }
+
+        public DbSet<City> Cities { get; set; }
+
+        public DbSet<Organization> Organizations { get; set; }
+
+        public DbSet<Service> Services { get; set; }
+
+        public DbSet<OrganizationService> OrganizationServices { get; set; }
+
+        public DbSet<Vote> Votes { get; set; }
 
         public override int SaveChanges() => this.SaveChanges(true);
 

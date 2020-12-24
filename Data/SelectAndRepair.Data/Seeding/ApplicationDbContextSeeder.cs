@@ -25,8 +25,8 @@
 
             var seeders = new List<ISeeder>
                           {
+                              // TODO: Insert new seedings
                               new RolesSeeder(),
-                              new SettingsSeeder(),
                           };
 
             foreach (var seeder in seeders)

@@ -2,9 +2,8 @@
 {
     using System.Diagnostics;
 
-    using SelectAndRepair.Web.ViewModels;
-
     using Microsoft.AspNetCore.Mvc;
+    using SelectAndRepair.Web.ViewModels;
 
     public class HomeController : BaseController
     {

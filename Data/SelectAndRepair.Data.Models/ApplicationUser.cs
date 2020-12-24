@@ -4,9 +4,8 @@ namespace SelectAndRepair.Data.Models
     using System;
     using System.Collections.Generic;
 
-    using SelectAndRepair.Data.Common.Models;
-
     using Microsoft.AspNetCore.Identity;
+    using SelectAndRepair.Data.Common.Models;
 
     public class ApplicationUser : IdentityUser, IAuditInfo, IDeletableEntity
     {
@@ -33,5 +32,9 @@ namespace SelectAndRepair.Data.Models
         public virtual ICollection<IdentityUserClaim<string>> Claims { get; set; }
 
         public virtual ICollection<IdentityUserLogin<string>> Logins { get; set; }
+
+        public virtual ICollection<Appointment> Appointments { get; set; }
+
+        public virtual ICollection<Organization> Organizations { get; set; }
     }
 }
