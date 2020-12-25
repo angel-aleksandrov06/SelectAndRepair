@@ -1,7 +1,71 @@
-﻿@model SelectAndRepair.Web.ViewModels.Administration.Dashboard.IndexViewModel
-@{
+﻿@{
     this.ViewData["Title"] = "Admin dashboard";
 }
 
-<h1>@this.ViewData["Title"]</h1>
-Settings: @this.Model.SettingsCount
+<div class=" d-block text-center">
+    <h3>Welcome to Admin Dashboard!</h3>
+    <p>Here is a quick navigation:</p>
+</div>
+
+<div class="row row-eq-height d-flex justify-content-center">
+    <div class="card col-xl-3 col-md-6 m-2">
+        <div class="card-body">
+            <h4 class="card-title text-center text-dark">Blog Posts</h4>
+            <hr />
+            <div class="mt-2 mb-2 d-flex justify-content-center">
+                <a class="btn btn-info" asp-area="Administration" asp-controller="BlogPosts" asp-action="Index">All Blog Posts</a>
+            </div>
+            <div class="mt-2 mb-2 d-flex justify-content-center">
+                <a class="btn btn-info" asp-area="Administration" asp-controller="BlogPosts" asp-action="AddBlogPost">Add New BlogPost</a>
+            </div>
+        </div>
+    </div>
+    <div class="card col-xl-3 col-md-6 m-2">
+        <div class="card-body">
+            <h4 class="card-title text-center text-dark">Categories</h4>
+            <hr />
+            <div class="mt-2 mb-2 d-flex justify-content-center">
+                <a class="btn btn-info" asp-area="Administration" asp-controller="Categories" asp-action="Index">All Categories</a>
+            </div>
+            <div class="mt-2 mb-2 d-flex justify-content-center">
+                <a class="btn btn-info" asp-area="Administration" asp-controller="Categories" asp-action="AddCategory">Add New Category</a>
+            </div>
+        </div>
+    </div>
+    <div class="card col-xl-3 col-md-6 m-2">
+        <div class="card-body">
+            <h4 class="card-title text-center text-dark">Cities</h4>
+            <hr />
+            <div class="mt-2 mb-2 d-flex justify-content-center">
+                <a class="btn btn-info" asp-area="Administration" asp-controller="Cities" asp-action="Index">All Cities</a>
+            </div>
+            <div class="mt-2 mb-2 d-flex justify-content-center">
+                <a class="btn btn-info" asp-area="Administration" asp-controller="Cities" asp-action="AddCity">Add New City</a>
+            </div>
+        </div>
+    </div>
+    <div class="card col-xl-3 col-md-6 m-2">
+        <div class="card-body">
+            <h4 class="card-title text-center text-dark">Organizations</h4>
+            <hr />
+            <div class="mt-2 mb-2 d-flex justify-content-center">
+                <a class="btn btn-info" asp-area="Administration" asp-controller="Organizations" asp-action="Index">All Organizations</a>
+            </div>
+            <div class="mt-2 mb-2 d-flex justify-content-center">
+                <a class="btn btn-info" asp-area="Administration" asp-controller="Organizations" asp-action="AddOrganization">Add New Organization</a>
+            </div>
+        </div>
+    </div>
+    <div class="card col-xl-3 col-md-6 m-2">
+        <div class="card-body">
+            <h4 class="card-title text-center text-dark">Service</h4>
+            <hr />
+            <div class="mt-2 mb-2 d-flex justify-content-center">
+                <a class="btn btn-info" asp-area="Administration" asp-controller="Services" asp-action="Index">All Services</a>
+            </div>
+            <div class="mt-2 mb-2 d-flex justify-content-center">
+                <a class="btn btn-info" asp-area="Administration" asp-controller="Services" asp-action="AddService">Add New Service</a>
+            </div>
+        </div>
+    </div>
+</div>

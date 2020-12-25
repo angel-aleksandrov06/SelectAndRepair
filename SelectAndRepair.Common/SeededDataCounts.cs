@@ -5,5 +5,7 @@
         public const int Categories = 1;
 
         public const int Cities = 2;
+
+        public const int Services = 1;
     }
 }

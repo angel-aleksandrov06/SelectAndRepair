@@ -24,4 +24,8 @@
     <ProjectReference Include="..\..\Services\SelectAndRepair.Services.Mapping\SelectAndRepair.Services.Mapping.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Administration\Dashboard\" />
+  </ItemGroup>
+
 </Project>

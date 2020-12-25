@@ -10,7 +10,7 @@
 
         public const int ContentMaxLength = 3000;
 
-        public const int DescriptionMinLength = 30;
+        public const int DescriptionMinLength = 5;
 
         public const int DescriptionMaxLength = 600;
 

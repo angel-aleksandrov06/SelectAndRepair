@@ -17,7 +17,7 @@
 
         public virtual Organization Organization { get; set; }
 
-        public string ServiceId { get; set; }
+        public int ServiceId { get; set; }
 
         public virtual Service Service { get; set; }
 

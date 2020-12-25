@@ -499,10 +499,7 @@ namespace SelectAndRepair.Data.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(450)");
 
-                    b.Property<string>("ServiceId")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<int?>("ServiceId1")
+                    b.Property<int>("ServiceId")
                         .HasColumnType("int");
 
                     b.HasKey("Id");
@@ -511,7 +508,7 @@ namespace SelectAndRepair.Data.Migrations
 
                     b.HasIndex("OrganizationId");
 
-                    b.HasIndex("ServiceId1");
+                    b.HasIndex("ServiceId");
 
                     b.ToTable("OrganizationServices");
                 });
@@ -720,7 +717,9 @@ namespace SelectAndRepair.Data.Migrations
 
                     b.HasOne("SelectAndRepair.Data.Models.Service", "Service")
                         .WithMany("Organizations")
-                        .HasForeignKey("ServiceId1");
+                        .HasForeignKey("ServiceId")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
 
                     b.Navigation("Organization");
 

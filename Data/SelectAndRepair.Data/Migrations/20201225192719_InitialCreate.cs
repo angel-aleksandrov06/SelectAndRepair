@@ -289,8 +289,7 @@ namespace SelectAndRepair.Data.Migrations
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     OrganizationId = table.Column<string>(type: "nvarchar(450)", nullable: false),
-                    ServiceId = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    ServiceId1 = table.Column<int>(type: "int", nullable: true),
+                    ServiceId = table.Column<int>(type: "int", nullable: false),
                     Available = table.Column<bool>(type: "bit", nullable: false),
                     CreatedOn = table.Column<DateTime>(type: "datetime2", nullable: false),
                     ModifiedOn = table.Column<DateTime>(type: "datetime2", nullable: true),
@@ -307,8 +306,8 @@ namespace SelectAndRepair.Data.Migrations
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Restrict);
                     table.ForeignKey(
-                        name: "FK_OrganizationServices_Services_ServiceId1",
-                        column: x => x.ServiceId1,
+                        name: "FK_OrganizationServices_Services_ServiceId",
+                        column: x => x.ServiceId,
                         principalTable: "Services",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Restrict);
@@ -512,9 +511,9 @@ namespace SelectAndRepair.Data.Migrations
                 column: "OrganizationId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_OrganizationServices_ServiceId1",
+                name: "IX_OrganizationServices_ServiceId",
                 table: "OrganizationServices",
-                column: "ServiceId1");
+                column: "ServiceId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Services_CategoryId",

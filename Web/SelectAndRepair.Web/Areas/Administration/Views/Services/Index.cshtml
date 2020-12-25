@@ -1,43 +1,49 @@
-﻿@model SelectAndRepair.Web.ViewModels.Cities.CitiesListViewModel
+﻿@model SelectAndRepair.Web.ViewModels.Services.ServicesListViewModel
 @using SelectAndRepair.Common
 @{
-    this.ViewData["Title"] = "Cities";
+    this.ViewData["Title"] = "Services";
 }
 
 <h2 class="pt-2 pb-2 d-flex justify-content-between">
-    All Cities [ @Model.Cities.Count() ]
+    All Services [ @Model.Services.Count() ]
     <div class="d-block">
-        <a class="btn btn-info" asp-area="Administration" asp-controller="Cities" asp-action="AddCity">Add New City</a>
+        <a class="btn btn-info" asp-area="Administration" asp-controller="Services" asp-action="AddService">Add New Service</a>
         <a class="btn btn-outline-info" asp-area="Administration" asp-controller="Dashboard" asp-action="Index">Back to Dashboard</a>
     </div>
 </h2>
 
 <table class="table table-bordered table-striped">
-    <thead class="thead-dark">
-        <tr class="table-dark">
+    <thead class="thead-light">
+        <tr>
             <th scope="col">Name</th>
+            <th scope="col">Category</th>
+            <th scope="col">Description</th>
             <th scope="col">Organizations</th>
+            <th scope="col">Appointments</th>
             <th scope="col"></th>
         </tr>
     </thead>
     <tbody>
-        @foreach (var city in this.Model.Cities)
+        @foreach (var service in this.Model.Services)
         {
             <tr>
-                <th scope="row">@city.Name</th>
-                <td>@city.OrganizationsCount</td>
+                <th scope="row">@service.Name</th>
+                <td>@service.CategoryName</td>
+                <td>@service.Description</td>
+                <td>@service.OrganizationsCount</td>
+                <td>@service.AppointmentsCount</td>
                 <td>
-                    @if (city.Id <= SeededDataCounts.Cities)
+                    @if (service.Id <= SeededDataCounts.Services)
                     {
                         <div class="text-muted" style="font-size:smaller">
-                            Seeded Data <br/> Cannot Be Deleted
+                            Seeded Data <br/>Cannot Be Deleted
                         </div>
                     }
                     else
                     {
                         <form method="post">
                             <button type="submit" class="btn btn-danger btn-sm"
-                                    asp-area="Administration" asp-controller="Cities" asp-action="DeleteCity" asp-route-id="@city.Id">
+                                    asp-area="Administration" asp-controller="Services" asp-action="DeleteService" asp-route-id="@service.Id">
                                 Delete
                             </button>
                         </form>

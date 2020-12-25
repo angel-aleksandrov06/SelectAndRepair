@@ -5,10 +5,11 @@
 }
 
 <h2 class="pt-2 pb-2 d-flex justify-content-between">
-    <p class="d-block">All Categories [ @Model.Categories.Count() ]</p>
-    <span class="d-block">
+    All Categories [ @Model.Categories.Count() ]
+    <div class="d-block">
         <a class="btn btn-info" asp-area="Administration" asp-controller="Categories" asp-action="AddCategory">Add New Category</a>
-    </span>
+        <a class="btn btn-outline-info" asp-area="Administration" asp-controller="Dashboard" asp-action="Index">Back to Dashboard</a>
+    </div>
 </h2>
 
 <table class="table table-bordered table-striped">

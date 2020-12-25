@@ -18,6 +18,9 @@
     using SelectAndRepair.Data.Seeding;
     using SelectAndRepair.Services.Data.Categories;
     using SelectAndRepair.Services.Data.Cities;
+    using SelectAndRepair.Services.Data.Organizations;
+    using SelectAndRepair.Services.Data.OrganizationsServices;
+    using SelectAndRepair.Services.Data.Services;
     using SelectAndRepair.Services.Mapping;
     using SelectAndRepair.Services.Messaging;
     using SelectAndRepair.Web.ViewModels;
@@ -66,6 +69,9 @@
             services.AddTransient<IEmailSender, NullMessageSender>();
             services.AddTransient<ICitiesService, CitiesService>();
             services.AddTransient<ICategoriesService, CategoriesService>();
+            services.AddTransient<IOrganizationsService, OrganizationsService>();
+            services.AddTransient<IOrganizationsServicesService, OrganizationsServicesService>();
+            services.AddTransient<IServicesService, ServicesService>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
