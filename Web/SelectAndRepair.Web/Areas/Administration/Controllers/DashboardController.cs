@@ -5,10 +5,6 @@
     public class DashboardController : AdministrationController
     {
 
-        public DashboardController()
-        {
-        }
-
         public IActionResult Index()
         {
             return this.View();
