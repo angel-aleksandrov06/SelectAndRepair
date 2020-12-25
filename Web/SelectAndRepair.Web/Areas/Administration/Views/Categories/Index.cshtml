@@ -1,0 +1,56 @@
+﻿@model SelectAndRepair.Web.ViewModels.Categories.CategoriesListViewModel
+@using SelectAndRepair.Common
+@{
+    this.ViewData["Title"] = "Categories";
+}
+
+<h2 class="pt-2 pb-2 d-flex justify-content-between">
+    <p class="d-block">All Categories [ @Model.Categories.Count() ]</p>
+    <span class="d-block">
+        <a class="btn btn-info" asp-area="Administration" asp-controller="Categories" asp-action="AddCategory">Add New Category</a>
+    </span>
+</h2>
+
+<table class="table table-bordered table-striped">
+    <thead class="thead-light">
+        <tr>
+            <th scope="col">Image</th>
+            <th scope="col">Name</th>
+            <th scope="col">Description</th>
+            <th scope="col">Services</th>
+            <th scope="col">Organizations</th>
+            <th scope="col"></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var category in this.Model.Categories)
+        {
+            <tr>
+                <td>
+                    <img class="align-self-center" src="@category.ImageUrl" style="width:180px;height:120px;">
+                </td>
+                <th scope="row">@category.Name</th>
+                <td>@category.Description</td>
+                <td>@category.ServicesCount</td>
+                <td>@category.OrganizationsCount</td>
+                <td>
+                    @if (category.Id <= SeededDataCounts.Categories)
+                    {
+                        <div class="text-muted" style="font-size:smaller">
+                            Seeded Data <br />Cannot Be Deleted
+                        </div>
+                    }
+                    else
+                    {
+                        <form method="post">
+                            <button type="submit" class="btn btn-danger btn-sm"
+                                    asp-area="Administration" asp-controller="Categories" asp-action="DeleteCategory" asp-route-id="@category.Id">
+                                Delete
+                            </button>
+                        </form>
+                    }
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

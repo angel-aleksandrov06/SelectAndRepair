@@ -4,8 +4,8 @@
     this.ViewData["Title"] = "Cities";
 }
 
-<h2 class="pt-2 pb-2">
-    All Cities (@Model.Cities.Count())
+<h2 class="pt-2 pb-2 d-flex justify-content-between">
+    All Cities [ @Model.Cities.Count() ]
     <span>
         <a class="btn btn-info" asp-area="Administration" asp-controller="Cities" asp-action="AddCity">Add New City</a>
     </span>
