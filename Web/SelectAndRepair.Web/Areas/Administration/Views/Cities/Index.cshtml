@@ -4,7 +4,7 @@
     this.ViewData["Title"] = "Cities";
 }
 
-<h2>
+<h2 class="pt-2 pb-2">
     All Cities (@Model.Cities.Count())
     <span>
         <a class="btn btn-info" asp-area="Administration" asp-controller="Cities" asp-action="AddCity">Add New City</a>
@@ -12,8 +12,8 @@
 </h2>
 
 <table class="table table-bordered table-striped">
-    <thead class="thead-light">
-        <tr>
+    <thead class="thead-dark">
+        <tr class="table-dark">
             <th scope="col">Name</th>
             <th scope="col">Organizations</th>
             <th scope="col"></th>
