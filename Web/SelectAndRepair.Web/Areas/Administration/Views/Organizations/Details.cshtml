@@ -29,7 +29,10 @@
         </div>
     </div>
     <div class="col-lg-7">
-        <h1>Services:</h1>
+        <h2 class="pt-2 pb-2 d-flex justify-content-between">
+            Services:
+            <a class="btn btn-outline-info" asp-area="Administration" asp-controller="Organizations" asp-action="Index">Back to All Organizations</a>
+        </h2>
         <table class="table table-bordered">
             <thead class="thead-light">
                 <tr>
@@ -41,29 +44,26 @@
             <tbody>
                 @foreach (var service in Model.OrganizationService)
                 {
-                    <tr>
-                        <th scope="row">@service.ServiceName</th>
-                        <td>
-                            @if (service.Available == true)
-                            {
-                            <span class="text-info font-weight-bold">true</span>
-                            }
-                            else
-                            {
-                            <span class="text-danger font-weight-bold">fasle</span>
-                            }
-                        </td>
-                        <td>
-                            <form method="post">
-                                <button type="submit" class="btn btn-outline-info btn-sm"
-                                        asp-area="Administration" asp-controller="Organizations" asp-action="ChangeServiceAvailableStatus" 
-                                        asp-route-organizationId="@Model.Id" asp-route-serviceId="@service.ServiceId">
-                                    Change
-                                </button>
-                            </form>
-                        </td>
-                    </tr>
-                }
+    <tr>
+        <th scope="row">@service.ServiceName</th>
+        <td>
+            @if (service.Available == true)
+            {
+    <span class="text-info font-weight-bold">true</span> }
+                    else
+                    {
+    <span class="text-danger font-weight-bold">fasle</span>}
+        </td>
+        <td>
+            <form method="post">
+                <button type="submit" class="btn btn-outline-info btn-sm"
+                        asp-area="Administration" asp-controller="Organizations" asp-action="ChangeServiceAvailableStatus"
+                        asp-route-organizationId="@Model.Id" asp-route-serviceId="@service.ServiceId">
+                    Change
+                </button>
+            </form>
+        </td>
+    </tr>}
             </tbody>
         </table>
     </div>
