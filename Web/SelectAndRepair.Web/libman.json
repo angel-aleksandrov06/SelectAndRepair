@@ -21,6 +21,15 @@
       ]
     },
     {
+      "library": "owl.carousel@2.3.4",
+      "destination": "wwwroot/lib/owlCarousel/",
+      "files": [
+        "dist/owl.carousel.js",
+        "dist/assets/owl.carousel.css",
+        "dist/assets/owl.theme.default.css"
+      ]
+    },
+    {
       "library": "jquery-validation@1.19.2",
       "destination": "wwwroot/lib/jquery-validation/",
       "files": [

@@ -75,13 +75,13 @@
 
             services.AddAuthentication().AddFacebook(options =>
             {
-                options.AppId = "";
-                options.AppSecret = "";
+                options.AppId = this.configuration["AuthenticationFacebook:AppId"];
+                options.AppSecret = this.configuration["AuthenticationFacebook:AppSecret"];
             });
             services.AddAuthentication().AddGoogle(options =>
             {
-                options.ClientId = "";
-                options.ClientSecret = "";
+                options.ClientId = this.configuration["AuthenticationGoogle:ClientId"];
+                options.ClientSecret = this.configuration["AuthenticationGoogle:ClientSecret"];
             });
         }
 

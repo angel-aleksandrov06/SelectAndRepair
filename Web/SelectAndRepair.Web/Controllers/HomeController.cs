@@ -1,15 +1,30 @@
 ﻿namespace SelectAndRepair.Web.Controllers
 {
     using System.Diagnostics;
+    using System.Threading.Tasks;
 
     using Microsoft.AspNetCore.Mvc;
+    using SelectAndRepair.Services.Data.Categories;
     using SelectAndRepair.Web.ViewModels;
+    using SelectAndRepair.Web.ViewModels.Home;
 
     public class HomeController : BaseController
     {
-        public IActionResult Index()
+        private readonly ICategoriesService categoriesService;
+
+        public HomeController(ICategoriesService categoriesService)
         {
-            return this.View();
+            this.categoriesService = categoriesService;
+        }
+
+        public async Task<IActionResult> Index()
+        {
+            var viewModel = new IndexViewModel
+            {
+                Categories = await this.categoriesService
+                .GetAllAsync<IndexCategoryViewModel>(),
+            };
+            return this.View(viewModel);
         }
 
         public IActionResult Privacy()

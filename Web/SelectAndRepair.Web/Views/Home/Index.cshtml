@@ -5,5 +5,39 @@
 
 <div class="text-center">
     <h1 class="display-4">Welcome to @GlobalConstants.SystemName!</h1>
-    <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+    <p>Select the most appropriate organization and repair your home.</p>
 </div>
+
+<div class="owl-carousel">
+    @foreach (var category in Model.Categories)
+    {
+        <div class="card m-3" style="width: 18rem;">
+            <img src="@category.ImageUrl" alt="">
+            <div class="card-body">
+                <h5 class="card-title">@category.Name</h5>
+                <p class="card-text">@category.Description</p>
+            </div>
+        </div>
+    }
+
+</div>
+
+@section Scripts {
+    <script>
+        var owl = $('.owl-carousel');
+        owl.owlCarousel({
+            items: 4,
+            loop: true,
+            margin: 200,
+            autoplay: true,
+            autoplayTimeout: 2000,
+            autoplayHoverPause: true
+        });
+        $('.play').on('click', function () {
+            owl.trigger('play.owl.autoplay', [1000])
+        })
+        $('.stop').on('click', function () {
+            owl.trigger('stop.owl.autoplay')
+        })
+    </script>
+}
