@@ -72,6 +72,17 @@
             services.AddTransient<IOrganizationsService, OrganizationsService>();
             services.AddTransient<IOrganizationsServicesService, OrganizationsServicesService>();
             services.AddTransient<IServicesService, ServicesService>();
+
+            services.AddAuthentication().AddFacebook(options =>
+            {
+                options.AppId = "";
+                options.AppSecret = "";
+            });
+            services.AddAuthentication().AddGoogle(options =>
+            {
+                options.ClientId = "";
+                options.ClientSecret = "";
+            });
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
