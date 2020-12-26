@@ -2,7 +2,8 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="utf-8" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>@this.ViewData["Title"] - @GlobalConstants.SystemName</title>
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" asp-append-version="true" />
@@ -58,6 +59,7 @@
     <script src="assets/owl-carousel/owl.carousel.js" asp-append-version="true"></script>
     <script src="~/js/site.js" asp-append-version="true"></script>
     <script src="~/lib/owlCarousel/dist/owl.carousel.js"></script>
+    <script src="~/lib/qrcode/src/qrcode.js"></script>
     @await this.RenderSectionAsync("Scripts", required: false)
 </body>
 </html>

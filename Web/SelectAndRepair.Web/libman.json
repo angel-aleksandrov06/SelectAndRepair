@@ -44,6 +44,10 @@
         "dist/jquery.validate.unobtrusive.js",
         "dist/jquery.validate.unobtrusive.min.js"
       ]
+    },
+    {
+      "library": "qrcode.js@0.0.1",
+      "destination": "wwwroot/lib/qrcode/"
     }
   ]
 }
