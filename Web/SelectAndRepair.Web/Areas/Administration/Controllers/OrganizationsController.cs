@@ -86,5 +86,20 @@
 
             return this.RedirectToAction("Index");
         }
+
+        public async Task<IActionResult> Details(string id)
+        {
+            var viewModel = await this.organizationsService.GetByIdAsync<OrganizationWithServicesViewModel>(id);
+
+            return this.View(viewModel);
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> ChangeServiceAvailableStatus(string organizationId, int serviceId)
+        {
+            await this.organizationsServicesService.ChangeAvailableStatusAsync(organizationId, serviceId);
+
+            return this.RedirectToAction("Details", new { id = organizationId });
+        }
     }
 }

@@ -1,0 +1,70 @@
+﻿@model SelectAndRepair.Web.ViewModels.Organizations.OrganizationWithServicesViewModel
+@{
+    this.ViewData["Title"] = "Details";
+}
+
+<div class="row row-eq-height pt-3">
+    <!-- Info Box -->
+    <div class="col-lg-5 info_box_col">
+        <div class="info_box">
+            <div class="info_image"><img src="@Model.ImageUrl" alt="" width="300px"></div>
+            <div class="info_content">
+                <div class="info_title">@Model.Name</div>
+                <div class="info_text">Category: <strong>@Model.CategoryName</strong></div>
+                <div class="info_text">City: <strong>@Model.CityName</strong></div>
+                <div class="info_text">Address: <strong>@Model.Address</strong></div>
+                <div class="info_text">
+                    Rating: &nbsp;&nbsp;
+                    <span class="star-rating">
+                        <span class="far fa-star" data-rating="1"></span>
+                        <span class="far fa-star" data-rating="2"></span>
+                        <span class="far fa-star" data-rating="3"></span>
+                        <span class="far fa-star" data-rating="4"></span>
+                        <span class="far fa-star" data-rating="5"></span>
+                        <input type="hidden" name="whatever1" class="rating-value" value="@Model.Rating">
+                    </span>
+                    <span>&nbsp; [ @Model.Rating.ToString("F") / 5.00 ]</span>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-lg-7">
+        <h1>Services:</h1>
+        <table class="table table-bordered">
+            <thead class="thead-light">
+                <tr>
+                    <th scope="col">Name</th>
+                    <th scope="col">Available</th>
+                    <th scope="col">Change</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var service in Model.OrganizationService)
+                {
+                    <tr>
+                        <th scope="row">@service.ServiceName</th>
+                        <td>
+                            @if (service.Available == true)
+                            {
+                            <span class="text-info font-weight-bold">true</span>
+                            }
+                            else
+                            {
+                            <span class="text-danger font-weight-bold">fasle</span>
+                            }
+                        </td>
+                        <td>
+                            <form method="post">
+                                <button type="submit" class="btn btn-outline-info btn-sm"
+                                        asp-area="Administration" asp-controller="Organizations" asp-action="ChangeServiceAvailableStatus" 
+                                        asp-route-organizationId="@Model.Id" asp-route-serviceId="@service.ServiceId">
+                                    Change
+                                </button>
+                            </form>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>
