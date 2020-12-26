@@ -16,6 +16,7 @@
     using SelectAndRepair.Data.Models;
     using SelectAndRepair.Data.Repositories;
     using SelectAndRepair.Data.Seeding;
+    using SelectAndRepair.Services.Data.BlogPosts;
     using SelectAndRepair.Services.Data.Categories;
     using SelectAndRepair.Services.Data.Cities;
     using SelectAndRepair.Services.Data.Organizations;
@@ -72,6 +73,7 @@
             services.AddTransient<IOrganizationsService, OrganizationsService>();
             services.AddTransient<IOrganizationsServicesService, OrganizationsServicesService>();
             services.AddTransient<IServicesService, ServicesService>();
+            services.AddTransient<IBlogPostsService, BlogPostsService>();
 
             services.AddAuthentication().AddFacebook(options =>
             {
