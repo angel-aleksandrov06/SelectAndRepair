@@ -20,17 +20,11 @@
 
         public async Task<IEnumerable<T>> GetAllAsync<T>(int? count = null)
         {
-            IQueryable<BlogPost> query =
-                this.blogPostsRepository
+            return await this.blogPostsRepository
                 .All()
-                .OrderByDescending(x => x.CreatedOn);
-
-            if (count.HasValue)
-            {
-                query = query.Take(count.Value);
-            }
-
-            return await query.To<T>().ToListAsync();
+                .OrderByDescending(x => x.CreatedOn)
+                .To<T>()
+                .ToListAsync();
         }
 
         public async Task<IEnumerable<T>> GetAllWithPagingAsync<T>(

@@ -22,14 +22,14 @@
             <div class="card-body">
                 <h5 class="card-title">@post.Title</h5>
                 <p class="card-text">@post.Content.Substring(0, DataValidations.ContentMinLength) ...</p>
-                <h6 class="card-title">@post.Author</h6>
+                <h6 class="card-title text-right">@post.Author</h6>
             </div>
         </div>
     }
 </div>
-<button class="btn btn-secondary">
-    See all blog posts
-</button>
+
+<a class="btn btn-secondary" asp-area="" asp-controller="BlogPosts" asp-action="Index">See all blog posts</a>
+
 <div class="m-3"></div>
 
 @section Scripts {

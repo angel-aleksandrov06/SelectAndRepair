@@ -4,42 +4,35 @@
 }
 
 <div class="row row-eq-height">
-    <!-- Info Box -->
     <div class="col-lg-4 info_box_col">
-        <div class="info_box">
-            <div class="info_image"><img src="@Model.ImageUrl" alt=""></div>
+        <div class="info_box p-2" style="background-color: #F4F8FB">
+            <div class="info_image"><img src="@Model.ImageUrl" width="100%"></div>
             <div class="info_content">
-                <div class="info_title">@Model.Name</div>
+                <div class="info_text pt-4 pb-4"> Organization Name: <strong>@Model.Name</strong></div>
                 <div class="info_text">Category: <strong>@Model.CategoryName</strong></div>
                 <div class="info_text">City: <strong>@Model.CityName</strong></div>
                 <div class="info_text">Address: <strong>@Model.Address</strong></div>
                 <div class="info_text">
-                    Rating: &nbsp;&nbsp;
-                    <span class="star-rating">
-                        <span class="fa fa-star-o" data-rating="1"></span>
-                        <span class="fa fa-star-o" data-rating="2"></span>
-                        <span class="fa fa-star-o" data-rating="3"></span>
-                        <span class="fa fa-star-o" data-rating="4"></span>
-                        <span class="fa fa-star-o" data-rating="5"></span>
-                        <input type="hidden" name="whatever1" class="rating-value" value="@Model.Rating">
-                    </span>
+                    Rating:
                     <span>&nbsp; [ @Model.Rating.ToString("F") / 5.00 ]</span>
                 </div>
             </div>
         </div>
     </div>
-    <!-- Panel -->
     <div class="col-lg-7">
-        <h2>Services:</h2>
+        <div class="pt-2 d-flex justify-content-between">
+            <h2 class="ml-5">Services: </h2>
+            <a class="btn btn-outline-info" asp-area="" asp-controller="Organizations" asp-action="Index">Back to organizations</a>
+        </div>
         <div class="tab_panel active">
             <div class="tab_panel_content">
                 <div class="tab_list">
-                    <ul>
+                    <ul style="list-style-type: none">
                         @foreach (var service in Model.OrganizationService.Where(x => x.Available == true))
                         {
-                            <li>
-                                <div class="tab_list_title">@service.ServiceName</div>
-                                <div class="tab_list_text"><p>@service.ServiceDescription</p></div>
+                            <li class="border mt-3">
+                                <div class="list-group-item-info font-weight-bolder pl-2" style="font-size: 17px">@service.ServiceName</div>
+                                <div class="tab_list_text mt-1 mb-2 pl-2">@service.ServiceDescription</div>
                             </li>
                         }
                     </ul>
