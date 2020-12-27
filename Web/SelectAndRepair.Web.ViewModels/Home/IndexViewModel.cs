@@ -4,6 +4,6 @@
 
     public class IndexViewModel
     {
-        public IEnumerable<IndexCategoryViewModel> Categories { get; set; }
+        public IEnumerable<IndexBlogPostsViewModel> BlogPosts { get; set; }
     }
 }

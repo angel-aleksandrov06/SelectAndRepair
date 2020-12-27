@@ -6,7 +6,7 @@
 
         public const string Author = "Author name must be between 2 and 40 characters.";
 
-        public const string Content = "Content must be between 30 and 3500 characters.";
+        public const string Content = "Content must be between 60 and 3500 characters.";
 
         public const string Description = "Description should be between 5 and 600 characters.";
 

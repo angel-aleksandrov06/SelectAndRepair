@@ -6,7 +6,7 @@
 
         public const int AddressMaxLength = 80;
 
-        public const int ContentMinLength = 30;
+        public const int ContentMinLength = 60;
 
         public const int ContentMaxLength = 3500;
 

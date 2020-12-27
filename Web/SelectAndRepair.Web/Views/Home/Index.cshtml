@@ -5,22 +5,32 @@
 
 <div class="text-center">
     <h1 class="display-4">Welcome to @GlobalConstants.SystemName!</h1>
-    <p>Select the most appropriate organization and repair your home.</p>
+    <div>
+        <p>Select the most appropriate organization and repair your home.</p>
+        <button class="btn btn-success">
+            Make your quesstion
+        </button>
+    </div>
 </div>
-
+<hr />
+<h2 class="text-center">Blog Posts</h2>
 <div class="owl-carousel">
-    @foreach (var category in Model.Categories)
+    @foreach (var post in Model.BlogPosts)
     {
         <div class="card m-3" style="width: 18rem;">
-            <img src="@category.ImageUrl" alt="">
+            <img src="@post.ImageUrl" alt="">
             <div class="card-body">
-                <h5 class="card-title">@category.Name</h5>
-                <p class="card-text">@category.Description</p>
+                <h5 class="card-title">@post.Title</h5>
+                <p class="card-text">@post.Content.Substring(0, DataValidations.ContentMinLength) ...</p>
+                <h6 class="card-title">@post.Author</h6>
             </div>
         </div>
     }
-
 </div>
+<button class="btn btn-secondary">
+    See all blog posts
+</button>
+<div class="m-3"></div>
 
 @section Scripts {
     <script>
