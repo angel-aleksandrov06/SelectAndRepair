@@ -33,14 +33,6 @@
             return await query.To<T>().ToListAsync();
         }
 
-        public async Task<T> GetByIdAsync<T>(int id)
-        {
-            return await this.categoriesRepository
-                .All()
-                .Where(x => x.Id == id)
-                .To<T>().FirstOrDefaultAsync();
-        }
-
         public async Task AddAsync(string name, string description, string imageUrl)
         {
             var category = new Category

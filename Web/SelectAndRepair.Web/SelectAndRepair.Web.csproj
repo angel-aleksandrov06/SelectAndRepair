@@ -44,8 +44,4 @@
     <ProjectReference Include="..\SelectAndRepair.Web.Infrastructure\SelectAndRepair.Web.Infrastructure.csproj" />
     <ProjectReference Include="..\SelectAndRepair.Web.ViewModels\SelectAndRepair.Web.ViewModels.csproj" />
   </ItemGroup>
-
-  <ItemGroup>
-    <Folder Include="Views\BlogPosts\" />
-  </ItemGroup>
 </Project>

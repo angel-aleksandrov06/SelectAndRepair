@@ -27,59 +27,6 @@
                 .To<T>().ToListAsync();
         }
 
-        public async Task<IEnumerable<T>> GetAllWithSortingFilteringAndPagingAsync<T>(
-            string searchString,
-            int? sortId,
-            int pageSize,
-            int pageIndex)
-        {
-            IQueryable<Organization> query =
-                this.organizationRepository
-                .AllAsNoTracking()
-                .OrderBy(x => x.Name);
-
-            if (!string.IsNullOrEmpty(searchString))
-            {
-                query = query
-                    .Where(x => x.Name.ToLower()
-                    .Contains(searchString.ToLower()));
-            }
-
-            if (sortId != null)
-            {
-                query = query
-                    .Where(x => x.CategoryId == sortId);
-            }
-
-            return await query
-                .Skip((pageIndex - 1) * pageSize)
-                .Take(pageSize)
-                .To<T>().ToListAsync();
-        }
-
-        public async Task<int> GetCountForPaginationAsync(string searchString, int? sortId)
-        {
-            IQueryable<Organization> query =
-                this.organizationRepository
-                .AllAsNoTracking()
-                .OrderBy(x => x.Name);
-
-            if (!string.IsNullOrEmpty(searchString))
-            {
-                query = query
-                    .Where(x => x.Name.ToLower()
-                                .Contains(searchString.ToLower()));
-            }
-
-            if (sortId != null)
-            {
-                query = query
-                    .Where(x => x.CategoryId == sortId);
-            }
-
-            return await query.CountAsync();
-        }
-
         public async Task<IEnumerable<string>> GetAllIdsByCategoryAsync(int categoryId)
         {
             return await this.organizationRepository
@@ -119,8 +66,7 @@
 
         public async Task DeleteAsync(string id)
         {
-            var organization =
-                await this.organizationRepository
+            var organization = await this.organizationRepository
                 .AllAsNoTracking()
                 .Where(x => x.Id == id)
                 .FirstOrDefaultAsync();

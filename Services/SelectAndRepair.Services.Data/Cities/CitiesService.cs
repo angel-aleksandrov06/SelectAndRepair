@@ -31,8 +31,7 @@
 
         public async Task DeleteAsync(int id)
         {
-            var city =
-                await this.citiesRepository
+            var city = await this.citiesRepository
                 .AllAsNoTracking()
                 .Where(x => x.Id == id)
                 .FirstOrDefaultAsync();

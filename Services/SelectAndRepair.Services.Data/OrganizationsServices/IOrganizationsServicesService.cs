@@ -10,7 +10,5 @@
         Task AddAsync(IEnumerable<string> organizationId, int serviceId);
 
         Task ChangeAvailableStatusAsync(string organizationId, int serviceId);
-
-        Task<T> GetByIdAsync<T>(string organizationId, int serviceId);
     }
 }

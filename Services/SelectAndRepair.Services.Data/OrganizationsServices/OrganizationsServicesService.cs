@@ -65,13 +65,5 @@
 
             await this.organizationServicesRepository.SaveChangesAsync();
         }
-
-        public async Task<T> GetByIdAsync<T>(string organizationId, int serviceId)
-        {
-            return await this.organizationServicesRepository
-                .All()
-                .Where(x => x.OrganizationId == organizationId && x.ServiceId == serviceId)
-                .To<T>().FirstOrDefaultAsync();
-        }
     }
 }

@@ -9,8 +9,6 @@
 
         Task<IEnumerable<T>> GetAllAsync<T>(int? count = null);
 
-        Task<T> GetByIdAsync<T>(int id);
-
         Task DeleteAsync(int id);
     }
 }
