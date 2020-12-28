@@ -43,3 +43,4 @@ This project is licensed under the MIT License.
 
 #### Using [ASP.NET-MVC-Template](https://github.com/NikolayIT/ASP.NET-MVC-Template) developed by:
 - [Nikolay Kostov](https://github.com/NikolayIT)
+- [Nikolay Kostov](https://github.com/StoyanShopov)
