@@ -22,6 +22,9 @@
     <div class="col-lg-7">
         <div class="pt-2 d-flex justify-content-between">
             <h2 class="ml-5">Services: </h2>
+            <form method="post" asp-area="" asp-controller="Organizations" asp-action="SendToEmail" asp-route-id="@Model.Id">
+                <button class="btn btn-warning">Send to my email</button>
+            </form>
             <a class="btn btn-outline-info" asp-area="" asp-controller="Organizations" asp-action="Index">Back to organizations</a>
         </div>
         <div class="tab_panel active">
