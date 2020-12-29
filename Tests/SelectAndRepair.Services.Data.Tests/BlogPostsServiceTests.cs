@@ -14,7 +14,7 @@
         private IBlogPostsService Service => this.ServiceProvider.GetRequiredService<IBlogPostsService>();
 
         /*
-        TODO: Task<IEnumerable<T>> GetAllAsync<T>(int? count = null);
+        TODO: Task<IEnumerable<T>> GetAllAsync<T>();
          */
 
         [Fact]

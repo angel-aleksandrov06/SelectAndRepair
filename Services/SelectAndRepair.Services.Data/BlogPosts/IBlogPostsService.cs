@@ -5,7 +5,7 @@
 
     public interface IBlogPostsService
     {
-        Task<IEnumerable<T>> GetAllAsync<T>(int? count = null);
+        Task<IEnumerable<T>> GetAllAsync<T>();
 
         Task AddAsync(string title, string content, string author, string imageUrl);
 

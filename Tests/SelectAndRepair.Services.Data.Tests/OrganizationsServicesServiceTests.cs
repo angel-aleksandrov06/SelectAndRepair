@@ -88,7 +88,6 @@
 
         private async Task<Service> CreateServiceAsync()
         {
-            // Add Service
             var service = new Service
             {
                 Name = new NLipsum.Core.Sentence().ToString(),
@@ -105,7 +104,6 @@
 
         private async Task<OrganizationService> CreateOrganizationServiceAsync(string organizationId, int serviceId)
         {
-            // Add OrganizationService
             var organizationService = new OrganizationService
             {
                 OrganizationId = organizationId,

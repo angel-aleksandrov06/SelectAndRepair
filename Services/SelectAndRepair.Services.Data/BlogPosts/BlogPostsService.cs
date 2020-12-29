@@ -18,7 +18,7 @@
             this.blogPostsRepository = blogPostsRepository;
         }
 
-        public async Task<IEnumerable<T>> GetAllAsync<T>(int? count = null)
+        public async Task<IEnumerable<T>> GetAllAsync<T>()
         {
             return await this.blogPostsRepository
                 .All()

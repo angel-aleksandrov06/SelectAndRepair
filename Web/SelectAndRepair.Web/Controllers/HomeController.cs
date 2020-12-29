@@ -25,8 +25,9 @@
             var viewModel = new IndexViewModel
             {
                 BlogPosts = await this.blogPosts
-                .GetAllAsync<IndexBlogPostsViewModel>(30),
+                .GetAllAsync<IndexBlogPostsViewModel>(),
             };
+
             return this.View(viewModel);
         }
 

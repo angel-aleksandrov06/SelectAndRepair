@@ -3,10 +3,10 @@
     using System.Linq;
     using System.Threading.Tasks;
 
-    using SelectAndRepair.Data.Models;
-    using SelectAndRepair.Services.Data.Categories;
     using Microsoft.EntityFrameworkCore;
     using Microsoft.Extensions.DependencyInjection;
+    using SelectAndRepair.Data.Models;
+    using SelectAndRepair.Services.Data.Categories;
     using Xunit;
 
     public class CategoriesServiceTests : BaseServiceTests
