@@ -6,6 +6,7 @@
     using System.Threading.Tasks;
     using Microsoft.AspNetCore.Authorization;
     using Microsoft.AspNetCore.Http;
+    using Microsoft.AspNetCore.Identity;
     using Microsoft.AspNetCore.Mvc;
     using Microsoft.AspNetCore.Mvc.Abstractions;
     using Microsoft.AspNetCore.Mvc.ModelBinding;
@@ -13,6 +14,8 @@
     using Microsoft.AspNetCore.Mvc.Rendering;
     using Microsoft.AspNetCore.Mvc.ViewFeatures;
     using Microsoft.AspNetCore.Routing;
+    using SelectAndRepair.Data.Models;
+    using SelectAndRepair.Data.Repositories;
     using SelectAndRepair.Services.Data.Organizations;
     using SelectAndRepair.Services.Messaging;
     using SelectAndRepair.Web.ViewModels.Organizations;
@@ -24,19 +27,25 @@
         private readonly IRazorViewEngine razorViewEngine;
         private readonly ITempDataProvider tempDataProvider;
         private readonly IEmailSender emailSender;
+        private readonly IVotesRepository votes;
+        private readonly UserManager<ApplicationUser> userManager;
 
         public OrganizationsController(
             IOrganizationsService organizationsService,
             IServiceProvider serviceProvider,
             IRazorViewEngine razorViewEngine,
             ITempDataProvider tempDataProvider,
-            IEmailSender emailSender)
+            IEmailSender emailSender,
+            IVotesRepository votes,
+            UserManager<ApplicationUser> userManager)
         {
             this.organizationsService = organizationsService;
             this.serviceProvider = serviceProvider;
             this.razorViewEngine = razorViewEngine;
             this.tempDataProvider = tempDataProvider;
             this.emailSender = emailSender;
+            this.votes = votes;
+            this.userManager = userManager;
         }
 
         public async Task<IActionResult> Index()
@@ -52,13 +61,20 @@
         public async Task<IActionResult> Details(string id)
         {
             var viewModel = await this.organizationsService.GetByIdAsync<OrganizationWithServicesViewModel>(id);
-
+            viewModel.Rating = await votes.GetOrganizationRating(id);
             if (viewModel == null)
             {
                 return new StatusCodeResult(404);
             }
 
             return this.View(viewModel);
+        }
+
+        [HttpGet]
+        [Authorize]
+        public IActionResult SendToEmail(string id, object test = null)
+        {
+            return this.RedirectToAction("Details", new { id });
         }
 
         [HttpPost]
@@ -78,8 +94,23 @@
                 html.AppendLine($"<div><p class\"font-weight-bolder pb-2\">{service.ServiceName}</p><p>{service.ServiceDescription}</p></div>");
             }
 
-            await this.emailSender.SendEmailAsync("angel.aleksandrov06@gmail.com", "SelectAndRepair", this.User.Identity.Name, organization.Result.Name, html.ToString());
+            await this.emailSender.SendEmailAsync("0011-sid@unibit.bg", "SelectAndRepair", this.User.Identity.Name, organization.Result.Name, html.ToString());
+
             return this.RedirectToAction("Details", new { id });
+        }
+
+        [HttpPost]
+        [Authorize]
+        public async Task<IActionResult> Vote(string organizationId, int star)
+        {
+            if (star == 0)
+            {
+                return this.RedirectToAction("Details", new { id = organizationId });
+            }
+
+            var user = await this.userManager.GetUserAsync(this.User);
+            await this.votes.AddVote(organizationId, user, star);
+            return this.RedirectToAction("Details", new { id = organizationId });
         }
 
         private async Task<string> RenderToStringAsync(string viewName, object model)

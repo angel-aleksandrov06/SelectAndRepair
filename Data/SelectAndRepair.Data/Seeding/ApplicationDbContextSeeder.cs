@@ -27,6 +27,7 @@
                           {
                               // TODO: Insert new seedings
                               new RolesSeeder(),
+                              new AdminSeeder()
                           };
 
             foreach (var seeder in seeders)

@@ -1,9 +1,10 @@
 ﻿namespace SelectAndRepair.Web.Areas.Administration.Controllers
 {
     using System.Threading.Tasks;
-
+    using Microsoft.AspNetCore.Authorization;
     using Microsoft.AspNetCore.Mvc;
     using Microsoft.AspNetCore.Mvc.Rendering;
+    using SelectAndRepair.Common;
     using SelectAndRepair.Services.Data.Categories;
     using SelectAndRepair.Services.Data.Cities;
     using SelectAndRepair.Services.Data.Organizations;

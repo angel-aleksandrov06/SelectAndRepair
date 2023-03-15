@@ -1,6 +1,19 @@
-﻿@model SelectAndRepair.Web.ViewModels.Organizations.OrganizationWithServicesViewModel
+﻿@using SelectAndRepair.Data.Models
+@using SelectAndRepair.Data.Repositories
+@using Microsoft.AspNetCore.Identity
+@model SelectAndRepair.Web.ViewModels.Organizations.OrganizationWithServicesViewModel
+@inject SignInManager<ApplicationUser> SignInManager
+@inject UserManager<ApplicationUser> UserManager
+@inject IVotesRepository Votes
+
 @{
     this.ViewData["Title"] = "Organization: " + Model.Name;
+    var user = await UserManager.GetUserAsync(this.User);
+    bool votesExistForCurrentUser = true;
+    if (user != null)
+    {
+        votesExistForCurrentUser = await Votes.CheckIfUserAlreayVoted(user, Model.Id);
+    }
 }
 
 <div class="row row-eq-height">
@@ -18,6 +31,9 @@
                 </div>
             </div>
         </div>
+        <div>
+            <div id="mapdiv" style="width: 100%; height:300px; margin: 10px 0px 10px 0px !important;"></div>
+        </div>
     </div>
     <div class="col-lg-7">
         <div class="pt-2 d-flex justify-content-between">
@@ -33,43 +49,59 @@
                     <ul style="list-style-type: none">
                         @foreach (var service in Model.OrganizationService.Where(x => x.Available == true))
                         {
-                        <li class="border mt-3">
-                            <div class="list-group-item-info font-weight-bolder pl-2" style="font-size: 17px">@service.ServiceName</div>
-                            <div class="tab_list_text mt-1 mb-2 pl-2">@service.ServiceDescription</div>
-                        </li>
+                            <li class="border mt-3">
+                                <div class="list-group-item-info font-weight-bolder pl-2" style="font-size: 17px">@service.ServiceName</div>
+                                <div class="tab_list_text mt-1 mb-2 pl-2">@service.ServiceDescription</div>
+                            </li>
                         }
                     </ul>
                 </div>
             </div>
         </div>
-    </div>
-    <div>
-        <div id="mapdiv" style="width: 300px; height:300px; margin: 10px 0px 0px 20px !important;"></div>
-
+        @if (this.SignInManager.IsSignedIn(this.User) && !votesExistForCurrentUser)
+        {
+            <div class="stars">
+                <h6>Rate this organization</h6>
+                <form method="post" class="form-stars" asp-controller="Organizations" asp-action="Vote">
+                    <input type="hidden" name="organizationId" value="@Model.Id" />
+                    <input class="star star-5" id="star-5" type="radio" name="star" value="5" />
+                    <label class="star star-5" for="star-5"></label>
+                    <input class="star star-4" id="star-4" type="radio" name="star" value="4" />
+                    <label class="star star-4" for="star-4"></label>
+                    <input class="star star-3" id="star-3" type="radio" name="star" value="3" />
+                    <label class="star star-3" for="star-3"></label>
+                    <input class="star star-2" id="star-2" type="radio" name="star" value="2" />
+                    <label class="star star-2" for="star-2"></label>
+                    <input class="star star-1" id="star-1" type="radio" name="star" value="1" />
+                    <label class="star star-1" for="star-1"></label>
+                    <button class="btn btn-warning text-dark" type="submit" style="padding: 12px"> Send </button>
+                </form>
+            </div>
+        }
     </div>
 </div>
 
 @section Scripts{
-    <script src="https://openlayers.org/api/OpenLayers.js"></script>
-    <script>
-        $(document).ready(function () {
-            map = new OpenLayers.Map("mapdiv");
-            map.addLayer(new OpenLayers.Layer.OSM());
+<script src="https://openlayers.org/api/OpenLayers.js"></script>
+<script>
+    $(document).ready(function () {
+        map = new OpenLayers.Map("mapdiv");
+        map.addLayer(new OpenLayers.Layer.OSM());
 
-            var lonLat = new OpenLayers.LonLat(23.337140, 42.690250)
-                .transform(
-                    new OpenLayers.Projection("EPSG:4326"), // transform from WGS 1984
-                    map.getProjectionObject() // to Spherical Mercator Projection
-                );
+        var lonLat = new OpenLayers.LonLat(23.337140, 42.690250)
+            .transform(
+                new OpenLayers.Projection("EPSG:4326"), // transform from WGS 1984
+                map.getProjectionObject() // to Spherical Mercator Projection
+            );
 
-            var zoom = 16;
+        var zoom = 16;
 
-            var markers = new OpenLayers.Layer.Markers("Markers");
-            map.addLayer(markers);
+        var markers = new OpenLayers.Layer.Markers("Markers");
+        map.addLayer(markers);
 
-            markers.addMarker(new OpenLayers.Marker(lonLat));
+        markers.addMarker(new OpenLayers.Marker(lonLat));
 
-            map.setCenter(lonLat, zoom);
-        });
-    </script>
+        map.setCenter(lonLat, zoom);
+    });
+</script>
 }

@@ -5,7 +5,7 @@
 
     public class Vote : BaseDeletableModel<int>
     {
-        public int OrganizationId { get; set; }
+        public string OrganizationId { get; set; }
 
         public virtual Organization Organization { get; set; }
 

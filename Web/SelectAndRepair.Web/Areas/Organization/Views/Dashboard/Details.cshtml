@@ -14,7 +14,15 @@
                 <div class="info_text">City: <strong>@Model.CityName</strong></div>
                 <div class="info_text">Address: <strong>@Model.Address</strong></div>
                 <div class="info_text">
-                    Rating: 
+                    Rating: &nbsp;&nbsp;
+                    <span class="star-rating">
+                        <span class="far fa-star" data-rating="1"></span>
+                        <span class="far fa-star" data-rating="2"></span>
+                        <span class="far fa-star" data-rating="3"></span>
+                        <span class="far fa-star" data-rating="4"></span>
+                        <span class="far fa-star" data-rating="5"></span>
+                        <input type="hidden" name="whatever1" class="rating-value" value="@Model.Rating">
+                    </span>
                     <span>&nbsp; [ @Model.Rating.ToString("F") / 5.00 ]</span>
                 </div>
             </div>
@@ -23,7 +31,7 @@
     <div class="col-lg-7">
         <h2 class="pb-2 d-flex justify-content-between">
             Services:
-            <a class="btn btn-outline-info" asp-area="Administration" asp-controller="Organizations" asp-action="Index">Back to All Organizations</a>
+            <a class="btn btn-outline-info" asp-area="Organization" asp-controller="Dashboard" asp-action="MyOrganizations">Back to All Organizations</a>
         </h2>
         <table class="table table-bordered">
             <thead class="thead-light">
@@ -49,7 +57,7 @@
         <td>
             <form method="post">
                 <button type="submit" class="btn btn-outline-info btn-sm"
-                        asp-area="Administration" asp-controller="Organizations" asp-action="ChangeServiceAvailableStatus"
+                        asp-area="Organization" asp-controller="Dashboard" asp-action="ChangeServiceAvailableStatus"
                         asp-route-organizationId="@Model.Id" asp-route-serviceId="@service.ServiceId">
                     Change
                 </button>

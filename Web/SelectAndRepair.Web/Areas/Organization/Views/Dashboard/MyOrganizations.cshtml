@@ -1,0 +1,72 @@
+﻿@model SelectAndRepair.Web.ViewModels.Organizations.OrganizationsListViewModel
+@{
+    this.ViewData["Title"] = "Organizations";
+}
+
+<h2 class="pt-2 pb-2 d-flex justify-content-between">
+    My Organizations [ @Model.Organizations.Count() ]
+    <div class="d-block">
+        <a class="btn btn-info" asp-area="Organization" asp-controller="Dashboard" asp-action="CreateOrganization">Add New Organization</a>
+    </div>
+    
+</h2>
+
+<table class="table table-bordered table-striped">
+    <thead class="thead-light">
+        <tr>
+            <th scope="col">Image</th>
+            <th scope="col">Name</th>
+            <th scope="col">Organization Dashboard</th>
+            <th scope="col">Category</th>
+            <th scope="col">City</th>
+            <th scope="col">Address</th>
+            <th scope="col"></th>
+            <th scope="col"></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var organization in this.Model.Organizations)
+        {
+        <tr>
+            <td>
+                <img class="align-self-center" src="@organization.ImageUrl" style="width:180px;height:120px;">
+            </td>
+            <td scope="row">@organization.Name</td>
+            <td>
+                <form method="post">
+                    <button type="submit" class="btn btn-danger btn-sm"
+                            asp-area="Organization" asp-controller="Dashboard" asp-action="Details" asp-route-id="@organization.Id">
+                        Details
+                    </button>
+                </form>
+            </td>
+            <td>@organization.CategoryName</td>
+            <td>@organization.CityName</td>
+            <td>@organization.Address</td>
+            <td>
+                <form method="get">
+            <button type="submit" class="btn btn-danger btn-sm"
+                    asp-area="Organization" asp-controller="Dashboard" asp-action="UpdateOrganization" asp-route-id="@organization.Id">
+                Update
+            </button>
+        </form>  
+            </td>
+            <td>
+                @if (organization.Id.StartsWith("seeded"))
+                {
+        <div class="text-muted" style="font-size:smaller">
+            Seeded Data <br /> Cannot Be Deleted
+        </div> }
+                        else
+                        {
+        <form method="post">
+            <button type="submit" class="btn btn-danger btn-sm"
+                    asp-area="Organization" asp-controller="Dashboard" asp-action="DeleteOrganization" asp-route-id="@organization.Id">
+                Delete
+            </button>
+        </form>                }
+            </td>
+        </tr>
+        }
+    </tbody>
+</table>

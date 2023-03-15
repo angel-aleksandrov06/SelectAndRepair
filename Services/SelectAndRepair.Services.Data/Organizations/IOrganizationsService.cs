@@ -1,5 +1,6 @@
 ﻿namespace SelectAndRepair.Services.Data.Organizations
 {
+    using SelectAndRepair.Data.Models;
     using System.Collections.Generic;
     using System.Threading.Tasks;
 
@@ -11,8 +12,14 @@
 
         Task<T> GetByIdAsync<T>(string id);
 
-        Task<string> AddAsync(string name, int categoryId, int cityId, string address, string imageUrl);
+        Task<string> AddAsync(string name, int categoryId, int cityId, string address, string imageUrl, ApplicationUser owner = null);
+
+        Task UpdateAsync(string id, string name, int categoryId, int cityId, string address, string imageUrl);
 
         Task DeleteAsync(string id);
+
+        Task<string> GetOrganizationEmail(string organizationId);
+
+        Task<IEnumerable<T>> GetAllByOwnerIdAsync<T>(string ownerId);
     }
 }

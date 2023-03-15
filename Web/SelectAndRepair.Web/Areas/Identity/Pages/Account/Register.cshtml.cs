@@ -14,6 +14,7 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.AspNetCore.WebUtilities;
 using Microsoft.Extensions.Logging;
 using SelectAndRepair.Data.Models;
+using SelectAndRepair.Common;
 
 namespace SelectAndRepair.Web.Areas.Identity.Pages.Account
 {
@@ -61,6 +62,10 @@ namespace SelectAndRepair.Web.Areas.Identity.Pages.Account
             [Display(Name = "Confirm password")]
             [Compare("Password", ErrorMessage = "The password and confirmation password do not match.")]
             public string ConfirmPassword { get; set; }
+
+            [Required]
+            [Display(Name = "Register As Organization")]
+            public bool RegisterAsOrganization { get; set; }
         }
 
         public async Task OnGetAsync(string returnUrl = null)
@@ -79,6 +84,11 @@ namespace SelectAndRepair.Web.Areas.Identity.Pages.Account
                 var result = await _userManager.CreateAsync(user, Input.Password);
                 if (result.Succeeded)
                 {
+                    if (Input.RegisterAsOrganization)
+                    {
+                        await _userManager.AddToRoleAsync(user, GlobalConstants.OrganizationRoleName);
+                    }
+
                     _logger.LogInformation("User created a new account with password.");
 
                     var code = await _userManager.GenerateEmailConfirmationTokenAsync(user);
